@@ -2,7 +2,7 @@
 #include <stdlib.h>
 
 
-/*Dados três números inteiros digitados pelo usuário diga qual é o maior e o
+/*Dados trÃªs nÃºmeros inteiros digitados pelo usuÃ¡rio diga qual Ã© o maior e o
 menor entre eles.
 */
 
@@ -29,7 +29,6 @@ for (int i = 1; i <=3; i++)
 
     }
 }
-
 
 printf("O maior dos numeros eh %d", maior);
 printf("\nO menor dos numeros eh %d", menor);
