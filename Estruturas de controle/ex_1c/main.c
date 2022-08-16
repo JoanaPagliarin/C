@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-/*)Dados números n e m,  escreva a todos os números entre 1 a 200 que sejam
-divisíveis por n mas não por m.*/
+/*)Dados nÃºmeros n e m,  escreva a todos os nÃºmeros entre 1 a 200 que sejam
+divisÃ­veis por n mas nÃ£o por m.*/
 
 int main()
 {
