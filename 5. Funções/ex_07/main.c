@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-/*Escreva uma funÁ„o chamada teste que recebe um valor inteiro positivo n como par‚metro. Sua
-funÁ„o deve retornar um valor inteiro b tal que b^k = n para algum inteiro k, e b seja o menor possÌvel.*/
+/*Escreva uma fun√ß√£o chamada teste que recebe um valor inteiro positivo n como par√¢metro. Sua
+fun√ß√£o deve retornar um valor inteiro b tal que b^k = n para algum inteiro k, e b seja o menor poss√≠vel.*/
 
 void fatoracao(int n);
 
@@ -29,7 +29,7 @@ void fatoracao (int n)
 
     numero = n;
 
-    for (base = 2; base <= n; base ++)
+    for (base = 1; base <= n; base ++)
     {
         resultado = 1;
         expoente = 0;
@@ -66,7 +66,7 @@ void fatoracao (int n)
                             expoente++;
                         }
 
-                        printf("%d^%d  ", div, expoente);
+                        printf("1^0 %d^%d  ", div, expoente);
                     }
                 }
 
