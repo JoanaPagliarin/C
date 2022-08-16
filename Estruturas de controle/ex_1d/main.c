@@ -1,12 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-/*Calcule o logaritmo de 10 mais prÛximo de um dado n˙mero n. Para calcular
-este valor conte quantas vezes pode≠se dividir o n˙mero por 10 atÈ que o
-resultado da divis„o inteira seja menor igual  a 1.
-Ex: 9/10 = 0 ≠> o logaritmo mais prÛximo È 1 pois foi feita uma divis„o por 10 atÈ
+/*Calcule o logaritmo de 10 mais pr√≥ximo de um dado n√∫mero n. Para calcular
+este valor conte quantas vezes pode¬≠se dividir o n√∫mero por 10 at√© que o
+resultado da divis√£o inteira seja menor igual  a 1.
+Ex: 9/10 = 0 ¬≠> o logaritmo mais pr√≥ximo √© 1 pois foi feita uma divis√£o por 10 at√©
 atingir zero.
-Note que este valor tambÈm indica o n˙mero de dÌgitos de um valor inteiro.*/
+Note que este valor tamb√©m indica o n√∫mero de d√≠gitos de um valor inteiro.*/
 
 
 int main()
@@ -44,5 +44,6 @@ if(printa != 0)
     printf("\nate que 10^%d fosse igual (ou se aproximasse) de %.2f\n", contador, numero);
 }
 
+    
     return 0;
 }
