@@ -22,7 +22,7 @@ int digitos = 0, ponto = 0, traco = 0, n;
 printf("digite um numero:  ");
 scanf("%s", str);
 
-digitos = strlen(str);
+digitos = strlen(str); 
 
 for(int i = 0; i < digitos; i++)
 {
