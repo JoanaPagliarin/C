@@ -5,51 +5,41 @@
 
 int main()
 {
-    int v[11], v_repetidos[121];
-    int i = 0, j = 0, m = 0, k = 0, contador = 0;
+    int v[6];
+    int i, j;
+    int aux;
 
-    printf("digite 10 numeros:\n");
+    printf("digite 5 numeros:\n");
 
-    for (; i < 10; i++)
+    for (int i = 0; i < 5; i++)
     {
         scanf("%d", &v[i]);
+    }
 
-        for (j = 0 ; j < i; j++)
+
+//ordenando numeros
+for (j = 5; j >= 0; j--)
+{
+     for(i = 0; i < 4 ; i++)
+        {
+            if(v[i] > v[i+1])
             {
-                if (v[i] == v[j] && i != 0)
-                {
-                    for(k = 0; k < m + 1; k++)
-                    {
-                        if(v_repetidos[m] != v[k])
-                        {
-                            contador++;
-                        }
-
-                        else
-                        {
-                            v_repetidos[m] = v[i];
-                        }
-                    }
-
-                    m++;
-
-                }
+                aux = v[i];
+                v[i] = v[i+1];
+                v[i+1] = aux;
             }
-    }
+        }
+}
 
-
-    printf("contador: %d\n", contador);
-
-    m = 0;
-
-    while(m < contador)
+for (i = 1; i < 4; i++)
+{
+    if (v[i] == v[i+1] || v[i] == v[i-1])
     {
-        printf("\nrepetidos: %d  ", v_repetidos[m]);
-        m++;
+        printf("%d se repete\n", v[i]);
     }
-
+}
 
 
     return 0;
 }
-;
+
