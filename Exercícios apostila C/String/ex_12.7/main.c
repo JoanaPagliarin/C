@@ -15,10 +15,11 @@ int main()
     int guarda_posicao = 0;
     int tam = 0;
 
-    fflush(stdin);
-
     printf("string:  ");
     gets(str);
+    fflush(stdin);
+
+    tam = strlen(str);
 
     while(str[i] != '\n' && str[i] != '\0')
         {
@@ -36,7 +37,7 @@ int main()
                     }
 
 
-                while(str[i] == ' ')
+                while(str[i] == ' ' || i == tam)
                 {
                     i++;
                     str2[k] = ' ';
