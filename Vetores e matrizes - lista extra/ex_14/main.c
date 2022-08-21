@@ -5,75 +5,62 @@
 
 int main()
 {
-    int r = 0;
-    int v[11], v_repetidos[r], v_num_repeticao[r];
-    int i, j;
-    int aux;
+    int v[11];
+    int v_repetidos[11], v_num_repeticoes[11];
+    int i = 0, j = 0, r = 0, k = 0;
+    int contador = 0, indica_repetidos = 0;
 
-
-    //Zerando vetor
-    for(i = 0; i < 11; i++)
+    for(int i = 0; i < 10; i++)
     {
-        v_repetidos[i] = 0;
-        v_num_repeticao[i] = 0;
+        v_num_repeticoes[i] = 1;
     }
 
-    printf("digite 10 numeros:\n");
 
-    for (int i = 0; i < 10; i++)
+    printf("Digite 10 numeros:\n");
+
+    for (i = 0; i < 10; i++)
     {
         scanf("%d", &v[i]);
-    }
 
+        indica_repetidos = 0;
+        j = 0;
 
-//ordenando numeros
-    for (j = 9; j >= 0; j--)
-    {
-        for(i = 0; i < 9 ; i++)
+        for (j = 0; j < i && i != 0; j++)
         {
-            if(v[i] > v[i+1])
-            {
-                aux = v[i];
-                v[i] = v[i+1];
-                v[i+1] = aux;
-            }
-        }
-    }
 
-//verificando repetições
-    for (i = 0; i < 9; i++)
-    {
-        if(v[i] == v[i+1])
-        {
-            if (i == 0)
+            if(v[i] == v[j])
             {
-                v_repetidos[r] = v[i];
-                r++;
-            }
+                while (k < r - 1)
+                {
 
-            else if(v[i-1] != v[i] && i != 0)
-            {
-                v_repetidos[r] = v[i];
-                r++;
-            }
+                    if(v[i] == v_repetidos[k] && indica_repetidos == 0)
+                    {
+                        v_num_repeticoes[k] += 1;
+                        indica_repetidos = 1;
+                    }
 
-            else
-            {
-                v_num_repeticao[r - 1] += 1;
-            }
+                    k++;
+                }
 
+                k = 0;
+
+                if(indica_repetidos == 0)
+                {
+                    v_repetidos[r] = v[i];
+                    v_num_repeticoes[r] += 1;
+                    contador++;
+                    r++;
+                    break;
+                }
+            }
         }
     }
 
     printf("\nNumeros repetidos:  ");
-
-    for (i = 0; i < r; i++)
+    for(r = 0; r < contador; r++)
     {
-        printf("%d repete %d vezes  ", v_repetidos[i], v_num_repeticao[i - 1]);
+        printf("Numero %d repetiu %d vezes   ", v_repetidos[r], v_num_repeticoes[r]);
     }
-
-
-
 
     return 0;
 }

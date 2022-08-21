@@ -7,24 +7,22 @@
 int main()
 {
 
-    int linha, coluna;
+    int linha, coluna, i;
 
-    for(linha = 0; linha < 8; linha++)
+    for(linha = 0; linha <= 7; linha++)
     {
-        for(coluna = 0; coluna < 8; coluna++)
+        for(i = 0; i <= linha - 1; i++)
         {
-            if (coluna <= linha - 1)
-            {
-                printf(" ");
-            }
+            printf("  ");
+        }
 
-            else
-            {
-                printf("#");
-            }
+        for(coluna = 7 - linha; coluna >= 0 ; coluna--)
+        {
+            printf("# ");
         }
 
         printf("\n");
+
     }
 
 

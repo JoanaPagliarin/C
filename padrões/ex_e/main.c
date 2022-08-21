@@ -5,27 +5,35 @@
 
 int main()
 {
-    int linha, coluna, diferenca = -5;
+int linha, coluna;
 
-     for(linha = 0; linha < 6; linha++)
+ //Borda superior
+for(coluna = 0; coluna < 7; coluna++)
+printf("# ");
+
+//Bordas laterais
+for(linha = 1; linha <= 5; linha++)
+{
+    printf("\n");
+    coluna = 0;
+
+    while(coluna <= 6)
     {
-        for(coluna = 0; coluna < 6; coluna++)
-        {
-            if(linha == 0)
-            printf("# ");
+        if(coluna == 0 || coluna == 6)
+        printf("# ");
 
-            else if(linha == coluna + 1)
-            printf("#");
+        else
+        printf("  ");
 
-            else if(linha - coluna != diferenca)
-            printf("  ");
-
-        }
-
-        printf("\n");
-        diferenca+=1;
-
+        coluna++;
     }
+}
+
+printf("\n");
+
+//Borda inferior
+for(coluna = 0; coluna < 7; coluna++)
+printf("# ");
 
     return 0;
 }

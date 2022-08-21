@@ -5,7 +5,6 @@
 
 int main()
 {
-
 int linha, coluna;
 
 for(linha = 0; linha < 8; linha++)
@@ -21,9 +20,6 @@ for(linha = 0; linha < 8; linha++)
     printf("\n");
 
 }
-
-
-
 
     return 0;
 }

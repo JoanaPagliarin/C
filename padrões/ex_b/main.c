@@ -5,25 +5,17 @@
 
 int main()
 {
-    int linha, coluna, diferenca = -7;
+    int linha, coluna;
 
-    for(linha = 0; linha < 8; linha++)
+    for(linha = 7; linha >= 0; linha--)
     {
-        for(coluna = 0; coluna < 8; coluna++)
+        for(coluna = linha; coluna >= 0; coluna--)
         {
-            if (linha - coluna >= diferenca)
-            {
                 printf("#  ");
-            }
-
         }
 
         printf("\n");
-        diferenca += 2;
     }
-
-
-
 
     return 0;
 }

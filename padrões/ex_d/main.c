@@ -5,26 +5,21 @@
 
 int main()
 {
- int linha, coluna, diferenca = -7;
+ int linha, coluna, i;
 
 
-    for(linha = 0; linha < 8; linha++)
+    for(linha = 0; linha <= 7; linha++)
     {
-        for(coluna = 0; coluna < 8; coluna++)
+        for(i = 7; i > linha; i--)
         {
-            if (linha - coluna > diferenca)
-            {
-                printf(" ");
-            }
-
-            else
-            {
-                printf("#");
-            }
-
+            printf("  ");
         }
 
-        diferenca += 2;
+        for(coluna = 0; coluna <= linha; coluna++)
+        {
+            printf("# ");
+        }
+
         printf("\n");
     }
 
