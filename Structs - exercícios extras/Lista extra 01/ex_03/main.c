@@ -60,7 +60,6 @@ int LocalizaCPF (struct Cliente clientes[], int n)
         if(strcmp(resposta, "SAIR") == 0)
         {
             printf("\nOperacao finalizada!\n");
-            achou == 1;
             break;
         }
 
@@ -72,7 +71,6 @@ int LocalizaCPF (struct Cliente clientes[], int n)
                 {
                     printf("O CPF foi encontrado!\n");
                     achou = 1;
-                    printf("Achou = 1; CPF = %s; posicao = %d\n", clientes[i].cpf, i);
                     return i;
                 }
             }
@@ -90,8 +88,6 @@ float ImprimeSaldo(struct Cliente clientes[], int n)
     scanf("%c", &resposta);
 
     int i;
-    i = LocalizaCPF(clientes, n);
-    printf("\ni = LocalizaCPF(clientes, n = %d", i);
     float valor = 0;
     float saldo = 0;
 
