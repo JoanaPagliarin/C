@@ -1,152 +1,126 @@
 #include <stdio.h>
-#include <windows.h>
 #include <stdlib.h>
+#include <locale.h>
 #include <string.h>
 #include <math.h>
-#define N 3
+#define N 5
 
 struct Cliente
 {
     char nome[50];
     char cpf[14];
-    int poltrona_escolhida;
+    int ocupado;
 };
 
-void ZeraPoltronas(struct Cliente clientes[], int n);
-void LeCliente (struct Cliente clientes[], int n);
-void Menu (struct Cliente clientes[], int n);
-int LocalizaCPF (struct Cliente clientes[], int n);
-void Operacao (struct Cliente clientes[], int n);
+void inicio (struct Cliente clientes[], int n);
+void exibe_poltronas (struct Cliente clientes[], int n);
+void escolhe_poltrona (struct Cliente clientes[], int n);
+void cadastro_cliente (struct Cliente clientes[], int i);
 
 int main()
 {
-    struct Cliente clientes [N];
-    LeCliente (clientes, N);
-    LocalizaCPF (clientes, N);
-    Operacao (clientes, N);
+    setlocale(LC_ALL, "Portuguese");
+    struct Cliente clientes[N];
+    inicio (clientes, N);
+    escolhe_poltrona (clientes, N);
 
     return 0;
 }
 
-void ZeraPoltronas(struct Cliente clientes[], int n)
+void inicio (struct Cliente clientes[], int n)
 {
-    for(int i = 0; i < n; i++)
-    clientes[i].poltrona_escolhida = 0;
+    for(int poltrona = 10; poltrona <= 45; poltrona++)
+    clientes[poltrona].ocupado = 0;
 }
 
-void LeCliente (struct Cliente clientes[], int n)
+void exibe_poltronas (struct Cliente clientes[], int n)
 {
-    printf("CADASTRO - CLIENTES - CINEMA\n");
-
-    for(int i = 0; i < n; i++)
+    printf("Poltronas disponíveis: ");
+    printf("\n");
+    int poltrona = 10;
+    for(int j = 0; j < 6; j++)
     {
-        fflush(stdin);
-        printf("Nome:  ");
-        gets(clientes[i].nome);
+        for(int i = 0; i < 6; i++)
+        {
+            if (clientes[poltrona].ocupado == 0)
+            {
+                printf("%d ", poltrona);
+                poltrona++;
+            }
 
-        fflush(stdin);
-        printf("CPF:  ");
-        gets(clientes[i].cpf);
+            else
+            {
+                printf("   ");
+                poltrona++;
+            }
+        }
         printf("\n");
     }
-
-    ZeraPoltronas (clientes, n);
 }
 
-
-void Menu (struct Cliente clientes[], int n)
+void escolhe_poltrona (struct Cliente clientes[], int n)
 {
-    int poltrona = 10;
+    exibe_poltronas(clientes, n);
+    char resposta;
+    int poltrona;
 
-    for (int linha = 0; linha < 6; linha++)
-    {
-        for(int coluna = 0; coluna < 6; coluna++)
-        {
-            for (int i = 0; i < n; i++)
-            {
-                if (poltrona == clientes[i].poltrona_escolhida)
-                {printf("  "); break;}
-
-                else
-                {printf("%d  ", poltrona); break;}
-
-            } poltrona++;
-
-        } printf("\n");
-    }
-}
-
-int LocalizaCPF (struct Cliente clientes[], int n)
-{
-    char resposta[14];
-
-
-    printf("Para comprar, reservar ou cancelar uma poltrona, digite seu CPF.\n");
-    printf("Digite SAIR para finalizar a operacao.\n");
-    fflush(stdin);
-    gets(resposta);
-
-    if(strcmp(resposta, "SAIR") == 0)
-    {printf("\nVoce saiu!\n");}
-
-    else
-    {
+    do{
         for(int i = 0; i < n; i++)
         {
-            if(strcmp(resposta, clientes[i].cpf) == 0)
-            {printf("O CPF foi encontrado!\n");
-            return i;}
+            printf("Digite 'c' para comprar, 'r' para reservar, 'x' para cancelar reserva ou 's' para sair:  ");
+            scanf("%c",&resposta);
+
+            switch (resposta)
+            {
+            case 'c':
+                {
+                    cadastro_cliente(clientes, i);
+                    printf("Digite uma poltrona para compra:  ");
+                    scanf("%d", &poltrona);
+                    clientes[poltrona].ocupado = 1;
+                    exibe_poltronas(clientes, n);
+                    break;
+                }
+
+            case 'r':
+                {
+                    cadastro_cliente(clientes, i);
+                    printf("Digite uma poltrona para reserva:  ");
+                    scanf("%d", &poltrona);
+                    clientes[poltrona].ocupado = 1;
+                    exibe_poltronas(clientes, n);
+                    break;
+                }
+
+            case 'x':
+                {
+                    printf("Digite uma poltrona para cancelar a reserva:  ");
+                    scanf("%d", &poltrona);
+                    clientes[poltrona].ocupado = 0;
+                    exibe_poltronas(clientes, n);
+                    break;
+                }
+
+            case 's':
+                {
+                    printf("Tchau!");
+                }
         }
-        printf("CPF invalido!\n");
     }
+
+
+    }while(resposta != 's');
 }
 
-
-void Operacao (struct Cliente clientes[], int n)
+void cadastro_cliente (struct Cliente clientes[], int i)
 {
-    Menu(clientes, n);
-
-    char resposta;
-    int j =  LocalizaCPF(clientes, n);
+    fflush(stdin);
+    printf("Digite seu nome:    ");
+    gets(clientes[i].nome);
 
     fflush(stdin);
-    printf("\nDigite C para comprar uma poltrona, R para reservar, X para cancelar a reserva ou S para sair:   ");
-    scanf("%c", &resposta);
+    printf("\nDigite seu cpf:    ");
+    gets(clientes[i].cpf);
 
-    switch (resposta)
-    {
-    case'C':
-    {
-        fflush(stdin);
-        printf("\nDigite a poltrona desejada para compra:   ");
-        scanf("%d", &clientes[j].poltrona_escolhida);
-        printf("\nCompra efetuada!\n");
-        Menu(clientes, n);
-        LocalizaCPF(clientes, n);
-        break;
-    }
-
-    case'R':
-    {
-        fflush(stdin);
-        printf("\nDigite a poltrona desejada para reserva:   ");
-        scanf("%d", &clientes[j].poltrona_escolhida);
-        printf("\nReserva efetuada!\n");
-        Menu(clientes, n);
-        LocalizaCPF(clientes, n);
-        break;
-    }
-
-    case'X':
-    {
-        clientes[j].poltrona_escolhida = 0;
-        printf("\nCancelamento efetuado!\n");
-        break;
-    }
-    case'S':
-    {
-        printf("\nOperacao finalizada!\n");
-        break;
-    }
-    }
+    fflush(stdin);
 }
