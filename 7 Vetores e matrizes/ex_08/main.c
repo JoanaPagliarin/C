@@ -5,8 +5,6 @@
 na ordem inversa.*/
 
 
-
-
 int main()
 {
     int v[7];
@@ -22,10 +20,6 @@ int main()
     {
         printf("%d  ", v[i]);
     }
-
-
-
-
 
     return 0;
 }

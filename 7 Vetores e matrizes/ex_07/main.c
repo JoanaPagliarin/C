@@ -1,58 +1,40 @@
 #include <stdio.h>
 #include <stdlib.h>
+#define N 10
 
 /*Escreva um programa que leia 10 numeros inteiros e os armazene em um vetor. Imprima ´
-o vetor, o maior elemento e a posicaoo que ele se encontra. */
+o vetor, o maior elemento e a posicao que ele se encontra. */
+
 
 int main()
 {
-    int v[11]; // 10 numeros
-    int v_original[11];
-    int aux;
-    int posicao_maior = 0;
-    int posicao_menor = 0;
 
-    printf("digite 10 numeros:\n");
+    int v[N], numero_maior, numero_menor, posicao_maior, posicao_menor, i = 0;
 
-    for (int i = 0; i < 10; i++)
+    printf("vetor:  ");
+
+    while (i < N)
     {
         scanf("%d", &v[i]);
-    }
 
-    for (int i = 0; i < 10; i++)
-    {
-        v_original[i] = v[i];
-    }
-
-    for (int j = 9; j >= 0; j--)
-    {
-        for(int i = 0; i < 9; i++)
-        {
-            if(v[i] > v[i+1])
-            {
-                aux = v[i];
-                v[i] = v[i+1];
-                v[i+1] = aux;
-            }
-        }
-    }
-
-    for (int i = 0; i < 10; i++)
-    {
-        if (v[9] == v_original[i])
+        if(v[i] > numero_maior)
         {
             posicao_maior = i;
+            numero_maior = v[i];
         }
 
-        else if (v[0] == v_original[i])
+        else if (v[i] < numero_menor)
         {
             posicao_menor = i;
+            numero_menor = v[i];
         }
+
+        i++;
     }
 
-
-    printf("maior: %d, posicao: %d\n", v[9], posicao_maior + 1);
-    printf("menor: %d, posicao: %d\n", v[0], posicao_menor + 1);
+    printf("MAIOR NUMERO: %d, POSICAO: %d  ", numero_maior, posicao_maior);
+    printf("\nMENOR NUMERO: %d, POSICAO: %d  ", numero_menor, posicao_menor);
 
     return 0;
+
 }

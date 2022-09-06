@@ -1,52 +1,44 @@
 #include <stdio.h>
 #include <stdlib.h>
+#define N 5
+
 
 /*Leia um vetor com 20 numeros inteiros. Escreva os elementos do vetor eliminando elementos repetidos*/
 
 int main()
 {
-    int v[21];
-    int v2[21];
-    int i, j, r = 0, contador = 0, achou = 0;
+    int v[N], v2[N], i = 0, j = 0, k = 0;
 
-    printf("Digite 10 numeros:\n");
+    for(k = 0; k < N; k++)
+    {v2[k] = 0;}
+    k = 0;
 
-    for (i = 0; i < 20; i++)
+    printf("vetor:  ");
+    scanf("%d", &v[i]);
+
+    while (i < N)
     {
+        i++;
         scanf("%d", &v[i]);
 
-        j = 0;
-        achou = 0;
-
-        while ( j < i )
+        for (j = 0; j < i; j++)
         {
-            if(v[i] == v[j])
+            if(v[i] != v[j])
             {
-                achou = 1;
+                v2[k] = v[j];
+                printf("\nv2 = %d com k = %d  ", v2[k], k);
+                k++;
                 break;
-            }
 
-            else
-            {
-                j++;
-                achou = 0;
             }
-        }
-
-        if(achou == 0)
-        {
-            v2[r] = v[i];
-            r++;
-            contador++;
         }
     }
 
-    printf("\nVetor sem repeticao:  ");
-    for(r = 0; r < contador; r++)
-    {
-        printf("%d  ", v2[r]);
-    }
 
+    printf("vetor sem os repetidos:  ");
+
+    for (i = 0; i < k; i++)
+    printf("%d  ", v2[i]);
 
     return 0;
 }
