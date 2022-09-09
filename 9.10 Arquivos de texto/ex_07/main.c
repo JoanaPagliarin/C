@@ -1,21 +1,21 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#define TAM 200
 
 /*receber arquivo de texto do usuario; criar outro arquivo substituindo as vogais deste por "*" */
 
 int main()
 {
+    int i = 0, TAM = 200;
     char str[TAM], aux[TAM];
-    int i = 0;
     FILE *arq  = fopen("arq.txt", "w");
     FILE *arq2 = fopen("arq2.txt", "w");
     printf("String:  ");
     fflush(stdin);
     fgets(str, TAM, stdin);
+    TAM = strlen(str) - 1;
 
-    while(i < strlen(str) - 1)
+    while(i < TAM)
     {
         fputc(aux[i] = str[i], arq);
 
@@ -54,7 +54,7 @@ int main()
 
     i = 0;
     printf("\nArq 2: ");
-    while(i < strlen(str) - 1)
+    while(i < TAM)
     {
         printf("%c", str[i]);
         i++;

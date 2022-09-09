@@ -10,14 +10,15 @@ com o caractere ‘0’
 
 int main()
 {
-    int i = 0;
-    char str[20];
+    int i = 0, TAM = 200;
+    char str[TAM];
     FILE *arq = fopen("arq.txt", "w");
 
     printf("Digite um texto:  ");
-    fgets(str, 20, stdin);
+    fgets(str, TAM, stdin);
+    TAM = strlen(str) - 1;
 
-    while(i < 20 && str[i] != '0')
+    while(i < TAM && str[i] != '0')
     {
         fputc(str[i], arq);
         i++;
@@ -31,7 +32,7 @@ int main()
 
     while(!feof(arq))
     {
-        fgets(str, 20, arq);
+        fgets(str, TAM, arq);
         printf("%s", str);
     }
 

@@ -1,41 +1,46 @@
 #include <stdio.h>
-#include <stdlib.h>]
+#include <stdlib.h>
 #include <string.h>
-#define TAM 200
 
 /*ler um arquivo com conteúdo e criar outro arquivo com o mesmo conteúdo, convertendo letras minusculas para maisculas
 - nome do outro arquivo fornecido pelo usuario*/
 
 int main()
 {
-    char str[TAM], nome_arq2[10];
-    int i = 0;
-
-    FILE *arq = fopen("arq.txt", "r");
+    int i = 0, TAM = 200, caracteres = 0;
+    char str[TAM], nome_arq2[20];
 
     printf("nome_arq2:   ");
     fflush(stdin);
-    fgets(nome_arq2, 10, stdin);
+    scanf("%[^\n]s", nome_arq2);
     FILE *arq2 = fopen(nome_arq2, "w");
+    FILE *arq = fopen("arq.txt", "r");
 
-    printf("Arq:  ");
-    printf("\n");
-    while(i < strlen(str))
+    printf("Arq: \n");
+    do
     {
-        printf("%c", str[i]);
-        fputc(str[i] = toupper(str[i]), arq2);
+        char c = fgetc(arq);
+        printf("%c", c);
+
+        /*while(c >= 0 && c <= 127)
+        {caracteres++; break;}*/
+
+        fputc(str[i] = toupper(c), arq2);
         i++;
-    }
+
+    } while(!feof(arq));
 
     fclose(arq);
     fclose(arq2);
     arq2 = fopen(nome_arq2, "r");
+
+    printf("\nArq2 de nome %s:\n", nome_arq2);
     while(!feof(arq2))
     {
-        fgets(str, TAM, arq2);
-        printf("%s", str);
-
+        char c = fgetc(arq2);
+        printf("%c", c);
     }
+
     fclose(arq2);
 
     return 0;

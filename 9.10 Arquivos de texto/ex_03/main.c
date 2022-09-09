@@ -1,19 +1,19 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#define TAM 20
 
 /*receber arquivo de texto e falar quantas letras sao vogais*/
 
 int main()
 {
+    int i = 0, TAM = 200, vogais = 0;
     char str[TAM];
-    int i = 0, vogais = 0;
     FILE *arq = fopen("arq.txt", "w");
     printf("String:   ");
     fgets(str, TAM, stdin);
+    TAM = strlen(str) - 1;
 
-    while(i < strlen(str) - 1)
+    while(i < TAM)
     {
         fputc(str[i], arq);
 
