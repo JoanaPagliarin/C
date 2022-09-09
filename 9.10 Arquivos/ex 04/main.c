@@ -13,7 +13,7 @@ int main()
     printf("String:   ");
     fgets(str, TAM, stdin);
 
-    while (i < strlen(str))
+    while (i < strlen(str) - 1)
     {
         fputc(str[i], arq);
 
