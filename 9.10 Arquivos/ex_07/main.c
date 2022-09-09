@@ -15,7 +15,7 @@ int main()
     fflush(stdin);
     fgets(str, TAM, stdin);
 
-    while(i < strlen(str))
+    while(i < strlen(str) - 1)
     {
         fputc(aux[i] = str[i], arq);
 
@@ -53,8 +53,8 @@ int main()
     fclose(arq);
 
     i = 0;
-    printf("Arq 2: ");
-    while(i < strlen(str))
+    printf("\nArq 2: ");
+    while(i < strlen(str) - 1)
     {
         printf("%c", str[i]);
         i++;
