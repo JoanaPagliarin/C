@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
-/*Implemente duas funções, uma que devolve o vetor ordenado por preços e outra que devolve o vetor
+/*Implemente duas funÃ§Ãµes, uma que devolve o vetor ordenado por preÃ§os e outra que devolve o vetor
 ordenado pela quantidade de itens no estoque.*/
 
 struct Produto{
@@ -10,6 +11,7 @@ struct Produto{
     int qntdd;
 };
 
+void RecebeProduto (struct Produto v[], int n);
 void OrdenaPreco (struct Produto v[], int n);
 void OrdenaQntdd (struct Produto v[], int n);
 
@@ -21,6 +23,17 @@ int main()
     scanf("%d", &n);
 
     struct Produto v[n];
+
+    RecebeProduto(v, n);
+    OrdenaPreco(v, n);
+    OrdenaQntdd(v, n);
+
+    return 0;
+}
+
+void RecebeProduto (struct Produto v[], int n)
+{
+    int i = 0;
 
     while (i < n)
     {
@@ -36,16 +49,13 @@ int main()
 
         i++;
     }
-
-    OrdenaPreco(v, n);
-    OrdenaQntdd(v, n);
-
-    return 0;
 }
 
 void OrdenaPreco (struct Produto v[], int n)
 {
-    int aux, i, j;
+    int i, j;
+    double aux_preco;
+    char aux_nome [80];
 
     for(j = 0; j < n - 1; j++)
     {
@@ -53,9 +63,14 @@ void OrdenaPreco (struct Produto v[], int n)
        {
            if (v[i].preco > v[i+1].preco)
            {
-               aux = v[i].preco;
+               aux_preco = v[i].preco;
                v[i].preco = v[i+1].preco;
-               v[i+1].preco = aux;
+               v[i+1].preco = aux_preco;
+
+               strcpy(aux_nome, v[i].nome);
+               strcpy(v[i].nome, v[i+1].nome);
+               strcpy(v[i+1].nome, aux_nome);
+
            }
        }
     }
@@ -66,7 +81,6 @@ void OrdenaPreco (struct Produto v[], int n)
     {
         printf("nome: %s  ", v[i].nome);
         printf("preco: %.2lf   ", v[i].preco);
-        printf("qntdd: %d   ", v[i].qntdd);
         printf("\n");
     }
 }
@@ -93,7 +107,6 @@ void OrdenaQntdd (struct Produto v[], int n)
     for(i = 0; i < n; i++)
     {
         printf("nome: %s  ", v[i].nome);
-        printf("preco: %.2lf   ", v[i].preco);
         printf("qntdd: %d   ", v[i].qntdd);
         printf("\n");
     }
