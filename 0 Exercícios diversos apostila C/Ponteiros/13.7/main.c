@@ -1,35 +1,33 @@
 #include <stdio.h>
 #include <stdlib.h>
-
-//contar qntdd de palavras na frase
+#include <string.h>
 
 int main()
 {
     char str[50], *p = &str[0];
-    int tam = 0, palavra = 0;
+    int tam = 0;
 
     printf("String:  ");
     fflush(stdin);
     gets(str);
     tam = strlen(str);
 
-    while (tam > 0)
+     while (tam > 0)
     {
-        while(*p != ' ' && tam > 0)
+        while (*p != ' ' && tam > 0)
         {
+            printf("%c", *p);
             p++;
             tam--;
-
         }
 
         if (*(p-1) != ' ')
-        palavra++;
+        printf("\n");
 
         p++;
-        tam --;
+        tam--;
     }
 
-    printf("\nNumeros de palavras: %d\n", palavra);
 
     return 0;
 }
