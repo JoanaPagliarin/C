@@ -1,8 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h> 
 
-//Escrever um programa que cadastre o nome, a matrícula e duas notas de vários alunos.
-//Em seguida imprima a matrícula, o nome e a média de cada um deles.
+//Escrever um programa que cadastre o nome, a matrï¿½cula e duas notas de vï¿½rios alunos.
+//Em seguida imprima a matrï¿½cula, o nome e a mï¿½dia de cada um deles.
 
 typedef struct
 {
@@ -11,8 +12,8 @@ typedef struct
     float nota1, nota2;
 }aluno;
 
-void LeAluno (aluno a, aluno *p, int n);
-void ImprimeAluno (aluno a, aluno *p, int n);
+void LeAluno (aluno *p, int n);
+void ImprimeAluno (aluno *p, int n);
 
 int main()
 {
@@ -29,7 +30,7 @@ int main()
     return 0;
 }
 
-void LeAluno (aluno a, aluno *p, int n)
+void LeAluno (aluno *p, int n)
 {
     while (n > 0)
     {
@@ -51,7 +52,7 @@ void LeAluno (aluno a, aluno *p, int n)
     }
 }
 
-void ImprimeAluno (aluno a, aluno *p, int n)
+void ImprimeAluno (aluno *p, int n)
 {
     while (n > 0)
     {
