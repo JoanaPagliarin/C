@@ -2,84 +2,99 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
-#define N 3
 
 /*Escrever um programa que cadastre o nome, a altura, o peso, o cpf e sexo de algumas pessoas.
 Com os dados cadastrados, em seguida localizar uma pessoas através do seu CPF e imprimir o seu IMC.*/
 
-struct Pessoa
+typedef struct
 {
     char nome[50];
     float altura, peso;
     char cpf[14];
-};
+}pessoa;
 
-void LePessoa (struct Pessoa pessoas[], int n);
-int LocalizaPessoa (struct Pessoa pessoas[], int n);
-float ImprimeIMC(struct Pessoa pessoas[], int n);
+void LePessoa (pessoa *p, int n);
+int LocalizaPessoa (pessoa *p, int n);
+float ImprimeIMC (pessoa *p, int n);
 
 int main()
 {
-    struct Pessoa pessoas[N];
-    LePessoa (pessoas, N);
-    printf("\nO IMC da pessoa localizada eh %.2f", ImprimeIMC(pessoas, N));
+    int n;
+    printf("Digite a qntdde de pessoas que vai cadastrar:  ");
+    scanf("%d", &n);
+
+    pessoa a;
+    pessoa *p = &a;
+
+    LePessoa (p, n);
+
+    while (n > 0)
+    {
+        printf("\nO IMC da pessoa localizada eh %.2f\n", ImprimeIMC(p, n));
+        if (LocalizaPessoa != NULL)
+        n--;
+    }
 
     return 0;
 }
 
-void LePessoa (struct Pessoa pessoas[], int n)
+void LePessoa (pessoa *p, int n)
 {
-    for(int i = 0; i < n; i++)
+    while (n > 0)
     {
-        fflush(stdin);
         printf("Nome:   ");
-        gets(pessoas[i].nome);
-
         fflush(stdin);
+        gets(p -> nome);
         printf("Peso:  ");
-        scanf("%f", &pessoas[i].peso);
-
-        fflush(stdin);
+        scanf("%f", &p -> peso);
         printf("Altura:  ");
-        scanf("%f", &pessoas[i].altura);
-
-        fflush(stdin);
+        scanf("%f", &p -> altura);
         printf("CPF:  ");
-        gets(pessoas[i].cpf);
+        fflush(stdin);
+        gets(p -> cpf);
         printf("\n\n");
+        p++;
+        n--;
     }
 }
 
-int LocalizaPessoa (struct Pessoa pessoas[], int n)
+int LocalizaPessoa (pessoa *p, int n)
 {
     int achou = 0;
     char buscaCPF[14];
+    int i = 0;
 
     while (achou == 0)
     {
-        fflush(stdin);
         printf("Digite um CPF para localizar a pessoa:   ");
+        fflush(stdin);
         gets(buscaCPF);
 
-        for(int i = 0; i < n && achou == 0; i++)
+        while (n > 0 && achou == 0)
        {
-            if(strcmp(buscaCPF, pessoas[i].cpf) == 0)
+            if(strcmp(buscaCPF, (p+i) -> cpf) == 0)
             {
                 printf("O CPF foi encontrado!\n");
                 achou = 1;
                 return i;
             }
+            i++;
+            n--;
         }
-            printf("CPF invalido!\n");
+        printf("CPF invalido!\n");
     }
 }
 
-float ImprimeIMC(struct Pessoa pessoas[], int n)
+float ImprimeIMC (pessoa *p, int n)
 {
-    float imc;
+    float IMC;
     int i;
 
-        i = LocalizaPessoa(pessoas, n);
-        imc = ((pessoas[i].peso)/pow((pessoas[i].altura), 2));
-        return imc;
+
+        i = LocalizaPessoa(p, n);
+        float PESO = (p+i) -> peso;
+        float ALTURA = (p+i) -> altura;
+        IMC = PESO / pow(ALTURA, 2);
+        return IMC;
+
 }

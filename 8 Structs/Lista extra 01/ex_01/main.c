@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h> 
+#include <string.h>
 
 //Escrever um programa que cadastre o nome, a matr�cula e duas notas de v�rios alunos.
 //Em seguida imprima a matr�cula, o nome e a m�dia de cada um deles.
@@ -38,18 +38,20 @@ void LeAluno (aluno *p, int n)
         fflush(stdin);
         gets(p -> nome);
 
-        printf("\nMatricula:  ");
+        printf("Matricula:  ");
         scanf("%d", &p -> matricula);
 
-        printf("\nNota 1:  ");
+        printf("Nota 1:  ");
         scanf("%f", &p -> nota1);
 
-        printf("\nNota 2:  ");
+        printf("Nota 2:  ");
         scanf("%f", &p -> nota2);
         printf("\n\n");
         p++;
         n--;
     }
+
+    system("cls");
 }
 
 void ImprimeAluno (aluno *p, int n)
