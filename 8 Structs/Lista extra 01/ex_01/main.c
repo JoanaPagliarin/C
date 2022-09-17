@@ -24,8 +24,8 @@ int main()
     printf("Quantos alunos voce vai cadastrar?  ");
     scanf("%d", &n);
 
-    LeAluno (a, p, n);
-    ImprimeAluno (a, p, n);
+    LeAluno (p, n);
+    ImprimeAluno (p, n);
 
     return 0;
 }
