@@ -2,112 +2,102 @@
 #include <stdlib.h>
 #include <string.h>
 
-/*Implemente duas funções, uma que devolve o vetor ordenado por preços e outra que devolve o vetor
-ordenado pela quantidade de itens no estoque.*/
+//cadastrar produtos e ordena-los por preço e por quantidade
 
-struct Produto{
-    char nome[80];
-    double preco;
+typedef struct
+{
+    char nome[50];
+    float preco;
     int qntdd;
-};
+} produto;
 
-void RecebeProduto (struct Produto v[], int n);
-void OrdenaPreco (struct Produto v[], int n);
-void OrdenaQntdd (struct Produto v[], int n);
+void LeProduto (produto *p, int n);
+void ImprimeProduto (produto *p, int n);
+void OrdenaporPreco (produto *p, int n);
+void OrdenaporQuantidade (produto *p, int n);
 
 int main()
 {
-    int n, i = 0;
 
-    printf("Quantidade de produtos para cadastrar:   ");
+    produto item;
+    produto *p = &item;
+
+    int n;
+    printf("Quantos produtos voce vai cadastrar?  ");
     scanf("%d", &n);
 
-    struct Produto v[n];
-
-    RecebeProduto(v, n);
-    OrdenaPreco(v, n);
-    OrdenaQntdd(v, n);
+    LeProduto (p, n);
+    ImprimeProduto (p, n);
+    OrdenaporPreco (p, n);
 
     return 0;
 }
 
-void RecebeProduto (struct Produto v[], int n)
+void LeProduto (produto *p, int n)
 {
     int i = 0;
-
-    while (i < n)
+    while (n > 0)
     {
-        printf("Nome:   ");
+        printf("Nome:  ");
         fflush(stdin);
-        gets(v[i].nome);
+        gets((p+i) -> nome);
+        printf("Preco:  ");
+        scanf("%f", &(p+i) -> preco);
+        printf("Qntdd:  ");
+        scanf("%d", &(p+i) -> qntdd);
+        //system("cls");
+        i++;
+        n--;
+    }
+}
 
-        printf("Preco:   ");
-        scanf("%lf", &v[i].preco);
-
-        printf("Quantidade:   ");
-        scanf("%d", &v[i].qntdd);
-
+void ImprimeProduto (produto *p, int n)
+{
+    int i = 0;
+    while (n > 0)
+    {
+        printf("Nome: %s", (p+i) -> nome);
+        printf("\nPreco: %.2f", (p+i) -> preco);
+        printf("\nQntdd: %d", (p+i) -> qntdd);
+        printf("\n\n");
+        n--;
         i++;
     }
 }
 
-void OrdenaPreco (struct Produto v[], int n)
+void OrdenaporPreco (produto *p, int n)
 {
-    int i, j;
-    double aux_preco;
-    char aux_nome [80];
+    //system("cls");
+    int aux_imprime = n,
+        N = n,
+        aux_guarda_preco,
+        i = 0;
 
-    for(j = 0; j < n - 1; j++)
+    while (N > 0)
     {
-       for(i = 0; i < n - 1; i++)
-       {
-           if (v[i].preco > v[i+1].preco)
-           {
-               aux_preco = v[i].preco;
-               v[i].preco = v[i+1].preco;
-               v[i+1].preco = aux_preco;
+        while (n > 0)
+        {
+            if ((p+i - 1) -> preco > (p+i) -> preco)
+            {
+                aux_guarda_preco = (p+i - 1) -> preco;
+                (p+i - 1) -> preco = p -> preco;
+                p -> preco = aux_guarda_preco;
+            }
 
-               strcpy(aux_nome, v[i].nome);
-               strcpy(v[i].nome, v[i+1].nome);
-               strcpy(v[i+1].nome, aux_nome);
-
-           }
-       }
+            printf("maior:  %.2f\n", (p+i - 1) -> preco);
+            printf("menor:   %.2f\n", p -> preco);
+            n--;
+            i++;
+        }
+        N--;
     }
 
-    printf("Produtos ordenados por preco:  ");
-    printf("\n");
-    for(i = 0; i < n; i++)
+    /*
+    i = 0;
+    while (aux_imprime > 0)
     {
-        printf("nome: %s  ", v[i].nome);
-        printf("preco: %.2lf   ", v[i].preco);
-        printf("\n");
-    }
-}
-
-void OrdenaQntdd (struct Produto v[], int n)
-{
-    int aux, i, j;
-
-    for(j = 0; j < n - 1; j++)
-    {
-       for(i = 0; i < n - 1; i++)
-       {
-           if (v[i].qntdd > v[i+1].qntdd)
-           {
-               aux = v[i].qntdd;
-               v[i].qntdd = v[i+1].qntdd;
-               v[i+1].qntdd = aux;
-           }
-       }
-    }
-
-    printf("\nProdutos ordenados por quantidade:  ");
-    printf("\n");
-    for(i = 0; i < n; i++)
-    {
-        printf("nome: %s  ", v[i].nome);
-        printf("qntdd: %d   ", v[i].qntdd);
-        printf("\n");
-    }
+        printf("%.2f  ", (p+i) -> preco);
+        aux_imprime--;
+        i++;
+    }*/
 }
