@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#define N 2
 
 //Escrever um programa que cadastre o nome, a matrícula e duas notas de vários alunos.
 //Em seguida imprima a matrícula, o nome e a média de cada um deles.
