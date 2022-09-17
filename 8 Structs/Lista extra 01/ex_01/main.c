@@ -5,63 +5,64 @@
 //Escrever um programa que cadastre o nome, a matrícula e duas notas de vários alunos.
 //Em seguida imprima a matrícula, o nome e a média de cada um deles.
 
-struct Aluno
+typedef struct
 {
     char nome[50];
     int matricula;
     float nota1, nota2;
-};
+}aluno;
 
-void LeAluno (struct Aluno Turma[], int n);
-void ImprimeAluno (struct Aluno Turma[], int n);
-float CalculaMedia (struct Aluno Turma[], int i);
+void LeAluno (aluno a, aluno *p, int n);
+void ImprimeAluno (aluno a, aluno *p, int n);
 
 int main()
 {
-    struct Aluno Turma[N];
+    aluno a;
+    aluno *p = &a;
 
-    LeAluno (Turma, N);
+    int n;
+    printf("Quantos alunos voce vai cadastrar?  ");
+    scanf("%d", &n);
 
-    ImprimeAluno (Turma, N);
+    LeAluno (a, p, n);
+    ImprimeAluno (a, p, n);
 
     return 0;
 }
 
-void LeAluno (struct Aluno Turma[], int n)
+void LeAluno (aluno a, aluno *p, int n)
 {
-    for(int i = 0; i < n; i++)
+    while (n > 0)
     {
-        fflush(stdin);
         printf("Nome:  ");
-        gets(Turma[i].nome);
         fflush(stdin);
+        gets(p -> nome);
 
         printf("\nMatricula:  ");
-        scanf("%d", &Turma[i].matricula);
+        scanf("%d", &p -> matricula);
 
         printf("\nNota 1:  ");
-        scanf("%f", &Turma[i].nota1);
+        scanf("%f", &p -> nota1);
 
         printf("\nNota 2:  ");
-        scanf("%f", &Turma[i].nota2);
+        scanf("%f", &p -> nota2);
         printf("\n\n");
+        p++;
+        n--;
     }
 }
 
-float CalculaMedia (struct Aluno Turma[], int i)
+void ImprimeAluno (aluno a, aluno *p, int n)
 {
-    return (Turma[i].nota1 + Turma[i].nota2)/2;
-}
-
-void ImprimeAluno (struct Aluno Turma[], int n)
-{
-    for(int i = 0; i < n; i++)
+    while (n > 0)
     {
-      printf("Nome: %s", Turma[i].nome);
-      printf("\nMatricula: %d", Turma[i].matricula);
-      printf("\nNota 1: %.2f", Turma[i].nota1);
-      printf("\nNota 2: %.2f", Turma[i].nota2);
-      printf("\nMedia: %.2f", CalculaMedia(Turma, i));
+      printf("Nome: %s", p -> nome);
+      printf("\nMatricula: %d", p -> matricula);
+      printf("\nNota 1: %.2f", p -> nota1);
+      printf("\nNota 2: %.2f", p -> nota2);
+      printf("\nMedia: %.2f", (p -> nota1 + p -> nota2)/2);
       printf("\n\n");
+      n--;
+      p++;
     }
 }
