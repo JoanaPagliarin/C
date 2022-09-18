@@ -15,7 +15,7 @@ typedef struct
 
 void LePessoa (pessoa *p, int n);
 int LocalizaPessoa (pessoa *p, int n);
-float ImprimeIMC (pessoa *p, int n);
+void ImprimeIMC (pessoa *p, int n, int i);
 
 int main()
 {
@@ -30,9 +30,13 @@ int main()
 
     while (n > 0)
     {
-        printf("\nO IMC da pessoa localizada eh %.2f\n", ImprimeIMC(p, n));
-        if (LocalizaPessoa != NULL)
-        n--;
+        int i = LocalizaPessoa(p, n);
+
+        if ( i != 0)
+        {
+            ImprimeIMC(p, n, i);
+            n--;
+        }
     }
 
     return 0;
@@ -40,22 +44,24 @@ int main()
 
 void LePessoa (pessoa *p, int n)
 {
+    int i = 0;
     while (n > 0)
     {
         printf("Nome:   ");
         fflush(stdin);
-        gets(p -> nome);
+        gets((p+i) -> nome);
         printf("Peso:  ");
-        scanf("%f", &p -> peso);
+        scanf("%f", &(p+i) -> peso);
         printf("Altura:  ");
-        scanf("%f", &p -> altura);
+        scanf("%f", &(p+i) -> altura);
         printf("CPF:  ");
         fflush(stdin);
-        gets(p -> cpf);
+        gets((p+i) -> cpf);
         printf("\n\n");
-        p++;
+        i++;
         n--;
     }
+    system("cls");
 }
 
 int LocalizaPessoa (pessoa *p, int n)
@@ -64,37 +70,34 @@ int LocalizaPessoa (pessoa *p, int n)
     char buscaCPF[14];
     int i = 0;
 
-    while (achou == 0)
-    {
-        printf("Digite um CPF para localizar a pessoa:   ");
-        fflush(stdin);
-        gets(buscaCPF);
+    printf("Digite um CPF para localizar a pessoa:   ");
+    fflush(stdin);
+    gets(buscaCPF);
 
-        while (n > 0 && achou == 0)
-       {
-            if(strcmp(buscaCPF, (p+i) -> cpf) == 0)
-            {
-                printf("O CPF foi encontrado!\n");
-                achou = 1;
-                return i;
-            }
-            i++;
-            n--;
+    while (achou == 0 && n > 0)
+    {
+        if(strcmp(buscaCPF, (p+i) -> cpf) == 0)
+        {
+            printf("O CPF foi encontrado!\n");
+            achou = 1;
+            return i;
         }
-        printf("CPF invalido!\n");
+
+        i++;
+        n--;
     }
+
+    printf("CPF invalido!\n");
+    return 0;
+
 }
 
-float ImprimeIMC (pessoa *p, int n)
+void ImprimeIMC (pessoa *p, int n, int i)
 {
     float IMC;
-    int i;
 
-
-        i = LocalizaPessoa(p, n);
-        float PESO = (p+i) -> peso;
-        float ALTURA = (p+i) -> altura;
-        IMC = PESO / pow(ALTURA, 2);
-        return IMC;
-
+    float PESO = (p+i) -> peso;
+    float ALTURA = (p+i) -> altura;
+    IMC = PESO / pow(ALTURA, 2);
+    printf("IMC: %.2f\n", IMC);
 }
