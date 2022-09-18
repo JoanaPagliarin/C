@@ -28,14 +28,15 @@ int main()
 
     LePessoa (p, n);
 
-    while (n > 0)
+    int N = n;
+    while (N > 0)
     {
         int i = LocalizaPessoa(p, n);
 
-        if ( i != 0)
+        if (i != -1)
         {
             ImprimeIMC(p, n, i);
-            n--;
+            N--;
         }
     }
 
@@ -61,7 +62,7 @@ void LePessoa (pessoa *p, int n)
         i++;
         n--;
     }
-    system("cls");
+   // system("cls");
 }
 
 int LocalizaPessoa (pessoa *p, int n)
@@ -88,7 +89,7 @@ int LocalizaPessoa (pessoa *p, int n)
     }
 
     printf("CPF invalido!\n");
-    return 0;
+    return -1;
 
 }
 
