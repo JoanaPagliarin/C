@@ -2,52 +2,154 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
-#define N 3
 
 //Programa pra sistema bancário
 
-struct Cliente
+typedef struct
 {
     char nome [50];
     char cpf[14];
+    char endereco[20];
     float deposito_inicial;
-};
+    float saldo;
+} cliente;
 
-void LeCliente (struct Cliente clientes[], int n);
-int LocalizaCPF(struct Cliente clientes[], int n);
-float ImprimeSaldo(struct Cliente clientes[], int n);
+void MenuGerente(cliente *p, int n);
+void MenuCliente(cliente *p, int n);
+void CadastraCliente (cliente *p, int n);
+void ExcluiCliente (cliente *p, int n);
+void LeCliente (cliente *p, int n);
+void AtualizaCliente (cliente *p, int n);
+void Operacao (cliente *p, int n);
 
 int main()
 {
-    struct Cliente clientes[N];
-    LeCliente (clientes, N);
-    LocalizaCPF (clientes, N);
-    printf("O saldo da conta eh %.2f", ImprimeSaldo (clientes, N));
+    cliente a;
+    cliente *p = &a;
+    int n = 0;
+
+    int resposta;
+    while (resposta != 3)
+    {
+        printf("1 - Acessar o sistema como cliente\n");
+        printf("2 - Acessar o sistema como gerente\n");
+        printf("3 - Sair");
+        scanf("%d", &resposta);
+
+        if(resposta == 1)
+        MenuCliente(p, n);
+
+        else
+        MenuGerente(p, n);
+    }
 
     return 0;
 }
 
-void LeCliente (struct Cliente clientes[], int n)
+void MenuGerente (cliente *p, int n)
 {
-    for(int i = 0; i < n; i++)
+    printf("Ola, gerente!\n");
+    printf("1 - Cadastrar cliente\n");
+    printf("2 - Excluir cliente\n");
+    printf("3 - Consultar dados do cliente\n");
+    printf("4 - Atualizar dados do cliente\n");
+    int resposta;
+    scanf("%d", &resposta);
+
+    switch (resposta)
     {
-        fflush(stdin);
-        printf("Nome:  ");
-        gets(clientes[i].nome);
-
-        fflush(stdin);
-        printf("CPF:  ");
-        gets(clientes[i].cpf);
-
-        printf("Digite um valor para deposito inicial:  ");
-        scanf("%f", &clientes[i].deposito_inicial);
-        printf("\n\n");
+        case 1:
+        {
+            CadastraCliente(p, n);
+            break;
+        }
+        case 2:
+        {
+            ExcluiCliente(p, n);
+            break;
+        }
+        case 3:
+        {
+            LeCliente(p, n);
+            break;
+        }
+        case 4:
+        {
+            AtualizaCliente(p, n);
+            break;
+        }
     }
+}
+
+void MenuCliente (cliente *p, int n)
+{
+    printf("Ola, cliente!\n");
+    printf("1 - Fazer cadastro\n");
+    printf("2 - Excluir cadastro\n");
+    printf("3 - Consultar dados\n");
+    printf("4 - Atualizar dados\n");
+    printf("5 - Sacar ou depositar\n");
+    int resposta;
+    switch (resposta)
+    {
+        case 1:
+        {
+            CadastraCliente(p, n);
+            break;
+        }
+        case 2:
+        {
+            ExcluiCliente(p, n);
+            break;
+        }
+        case 3:
+        {
+            LeCliente(p, n);
+            break;
+        }
+        case 4:
+        {
+            AtualizaCliente(p, n);
+            break;
+        }
+        case 5:
+        {
+            Operacao(p, n);
+            break;
+        }
+    }
+}
+
+void CadastraCliente (cliente *p, int n)
+{
+    int i = 0;
+
+    printf("Nome:  ");
+    fflush(stdin);
+    gets((p+i) -> nome);
+    printf("CPF:  ");
+    fflush(stdin);
+    gets((p+i) -> cpf);
+    printf("Endereco:  ");
+    fflush(stdin);
+    gets((p+i) -> endereco);
+    Operacao(p);
+    printf("\n\n");
+}
+
+void ExcluiCliente (cliente *p, int n)
+{
+    char buscacpf[14];
+    printf("Digite o CPF do cliente a ser excluido:  ");
+    fflush(stdin);
+    gets(buscacpf);
+
+
 }
 
 int LocalizaCPF (struct Cliente clientes[], int n)
 {
-    char resposta[14];;
+    char resposta[14];
     int achou = 0;
 
 
