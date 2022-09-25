@@ -3,7 +3,7 @@
 
 int main()
 {
-//calcular número de ferraduras para x cavalos
+//calcular numero de ferraduras para x cavalos
 
     int x_cavalos;
 
