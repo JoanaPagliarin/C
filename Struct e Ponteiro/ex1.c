@@ -20,7 +20,6 @@ void main()
     scanf("%d", &n);
     produto *p = (produto *)malloc(sizeof(produto)*n);
     leProduto(p, n); 
-    imprimeProdutos(p,n);
     ordenaPrecos(p,n); 
     ordenaQuantidades(p,n); 
 }
@@ -62,17 +61,18 @@ void imprimeProdutos(produto *p, int n)
 
 void ordenaPrecos(produto *p, int n)
 {
+    produto *aux = (produto *)malloc(sizeof(produto)*n);
     printf("Ordenacao por preco:\n");
-    int i, j, aux; 
+    int i, j;
     for(j=0; j<n-1; j++)
     {
         for(i=0; i<n-1; i++)
         {
-            if((p+i)->preco > (p+i+1)->preco)
+           if(p[i].preco > p[i+1].preco)
             {
-                aux = (p+i)->preco;
-                (p+i)->preco = (p+i+1)->preco;
-                (p+i+1)->preco = aux; 
+                aux[i]= p[i]; 
+                p[i] = p[i+1]; 
+                p[i+1] = aux[i]; 
             }
         }
     } 
@@ -81,17 +81,18 @@ void ordenaPrecos(produto *p, int n)
 
 void ordenaQuantidades(produto *p, int n)
 {
+    produto *aux = (produto *)malloc(sizeof(produto)*n);
     printf("Ordenacao por quantidade:\n");
-    int i, j, aux; 
+    int i, j; 
     for(j=0; j<n-1; j++)
     {
         for(i=0; i<n-1; i++)
         {
-            if((p+i)->quantidade > (p+i+1)->quantidade)
+            if(p[i].quantidade > p[i+1].quantidade)
             {
-                aux = (p+i)->quantidade;
-                (p+i)->quantidade = (p+i+1)->quantidade;
-                (p+i+1)->quantidade = aux; 
+                aux[i]= p[i]; 
+                p[i] = p[i+1]; 
+                p[i+1] = aux[i]; 
             }
         }
     } 
