@@ -22,6 +22,7 @@ void main()
     leProduto(p, n); 
     ordenaPrecos(p,n); 
     ordenaQuantidades(p,n); 
+    free(p);
 }
 
 void leProduto(produto *p, int n)
@@ -76,6 +77,7 @@ void ordenaPrecos(produto *p, int n)
             }
         }
     } 
+    free(aux);
     imprimeProdutos(p,n); 
 }
 
@@ -96,5 +98,6 @@ void ordenaQuantidades(produto *p, int n)
             }
         }
     } 
+    free(aux);
     imprimeProdutos(p,n); 
 }
